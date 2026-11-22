@@ -83,7 +83,11 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.88em;
+    }
+
+    // Cells at the page's meta size, headers at its label size (editor.scss)
+    td {
+      font-size: var(--page-meta-size);
     }
 
     td,
@@ -98,7 +102,7 @@
     thead th {
       background: var(--editor-table-head-background-color);
       color: var(--editor-table-head-color);
-      font-size: 0.85em;
+      font-size: var(--page-label-size);
       font-weight: 650;
       border-bottom: 1px solid var(--ui-accent-muted-soft-color);
     }
@@ -119,7 +123,7 @@
   .sb-lua-directive-block {
     th {
       font-weight: 600;
-      font-size: 0.85em;
+      font-size: var(--page-label-size);
     }
 
     // Tabular figures for numbers only: some fonts (Lora) widen the space with them too

@@ -56,6 +56,18 @@ $comment-border: 1px;
     --editor-base-font: 1em;
     --blockquote-bar: 2px;
     --blockquote-step: calc(2 * var(--editor-column));
+
+    // What stands in the page text (frontmatter, attributes, query results,
+    // page-docked views) speaks in the page's voice: inside the page the
+    // interface font is the page's own font. Popovers, pickers and docks sit
+    // outside .cm-content and keep the interface font.
+    --ui-font: var(--editor-font);
+    // Two small roles, relative to the body so they follow the reader's size:
+    // meta for sources, frame titles and attribute values; label for keys,
+    // task states and chips.
+    --page-meta-size: 0.85em;
+    --page-label-size: 0.78em;
+    --ui-font-size-sm: var(--page-meta-size);
   }
 
   .cm-line {
@@ -91,30 +103,26 @@ $comment-border: 1px;
     background-color: var(--editor-directive-background-color);
   }
 
-  // Heading lines: ink at every level, size and weight carry the hierarchy
-  .sb-line-h1 {
+  // Heading lines: ink at every level, size and weight carry the hierarchy.
+  // One scale for edited lines and rendered headings alike, below the page
+  // title (1.7 × body, top.scss): 1.4 / 1.2 / 1.1, then body size in bold.
+  .sb-line-h1,
+  h1 {
     font-size: 1.4em;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
   }
 
-  .sb-line-h2 {
-    font-size: 1.15em;
+  .sb-line-h2,
+  h2 {
+    font-size: 1.2em;
     letter-spacing: -0.01em;
   }
 
-  h1 {
-    font-size: 1.5em;
-  }
-
-  h2 {
-    font-size: 1.2em;
-  }
-
+  .sb-line-h3,
   h3 {
     font-size: 1.1em;
   }
 
-  .sb-line-h3,
   .sb-line-h4,
   h4,
   .sb-line-h5,
@@ -632,7 +640,7 @@ $comment-border: 1px;
   .sb-task-slot [data-task-state] .sb-task-state,
   .sb-task>.sb-task-state {
     font-family: var(--ui-font);
-    font-size: 0.72em;
+    font-size: var(--page-label-size);
     font-weight: 600;
     letter-spacing: 0.03em;
     color: var(--ui-label-color);
@@ -735,7 +743,7 @@ $comment-border: 1px;
 
   // Attributes as quiet pills, in the editor font even in frontmatter
   .sb-attribute {
-    font-size: 0.8em;
+    font-size: var(--page-label-size);
     color: var(--subtle-color);
     background: var(--ui-accent-surface-color);
     box-shadow: inset 0 0 0 1px var(--ui-accent-muted-soft-color);
@@ -921,9 +929,9 @@ $comment-border: 1px;
       display: flex;
       align-items: center;
       padding-right: 7px;
-      // Chrome, like the form's keys: UI font, not the page's body font
+      // The page's voice, like the form's keys (see .cm-content)
       font-family: var(--ui-font);
-      font-size: 0.68em;
+      font-size: var(--page-label-size);
       font-weight: 500;
       color: var(--meta-color);
       pointer-events: none;
@@ -1301,7 +1309,7 @@ $comment-border: 1px;
       display: block;
       margin-bottom: 4px;
       padding-right: 32px;
-      font: 500 12.5px/1.4 var(--ui-font);
+      font: 500 var(--page-meta-size)/1.4 var(--ui-font);
       color: var(--subtle-color);
       overflow: hidden;
       text-overflow: ellipsis;
@@ -1450,7 +1458,7 @@ $comment-border: 1px;
     width: 100%;
     vertical-align: top;
     font-family: var(--ui-font);
-    font-size: 12px;
+    font-size: var(--page-label-size);
     font-weight: 600;
     color: var(--ui-label-color);
     -webkit-user-select: none;
@@ -1466,7 +1474,7 @@ $comment-border: 1px;
 
   .sb-baked-label {
     font-family: var(--ui-font);
-    font-size: 12px;
+    font-size: var(--page-label-size);
     font-weight: 600;
     color: var(--ui-label-color);
   }
@@ -1510,7 +1518,7 @@ div:not(.cm-focused).cm-fat-cursor {
 .sb-page-var-tag {
   display: inline-block;
   font-family: var(--ui-font);
-  font-size: 0.72em;
+  font-size: var(--page-label-size, 0.72em);
   line-height: 1.5;
   padding: 0 0.45em;
   margin-right: 0.35em;

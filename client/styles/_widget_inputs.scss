@@ -342,14 +342,14 @@
   background: var(--tone-accent-soft);
   color: var(--ui-accent-text-color);
   font-family: var(--ui-font);
-  font-size: 0.85em;
+  font-size: 0.9em;
   font-weight: 500;
   white-space: nowrap;
 }
 .sb-fm-add-item { margin-left: 16px; }
-/* The same background as the YAML it replaces. Object forms are controls, not
-   page text: the interface font, a touch smaller since Inter runs larger than
-   most editor fonts. */
+/* The same background as the YAML it replaces. Object forms stand in the page
+   text, so they speak in the page's voice (--ui-font is the editor font inside
+   .cm-content) at the page's meta size. */
 .sb-frontmatter-preview .sb-fm-form {
   background-color: var(--editor-frontmatter-background-color);
   border: 0;
@@ -358,7 +358,7 @@
   column-gap: 20px;
 }
 .sb-frontmatter-preview .sb-fm-form,
-.sb-data-block-preview .sb-fm-form { font-family: var(--ui-font); font-size: 0.74em; }
+.sb-data-block-preview .sb-fm-form { font-family: var(--ui-font); font-size: var(--page-meta-size, 0.74em); }
 .sb-data-block-preview .sb-fm-form { background-color: var(--editor-code-background-color); }
 .sb-frontmatter-preview .sb-fm-key { font-weight: 500; color: var(--ui-label-color); }
 .sb-fm-add-row { grid-column: 1 / -1; padding: 2px 0 4px; }

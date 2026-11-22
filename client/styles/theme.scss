@@ -219,7 +219,8 @@
   --editor-wiki-link-page-background-color: transparent;
   // Wiki links and bare URLs, in the editor and in widgets: `underline` draws
   // them like written links.
-  --editor-link-text-decoration: underline 1.5px color-mix(in srgb, var(--ui-accent-text-color) 40%, transparent);
+  // The underline takes the link's own colour, so a missing (orange) link is not underlined in blue
+  --editor-link-text-decoration: underline 1px color-mix(in srgb, currentColor 35%, transparent);
   --editor-page-var-tag-color: var(--ui-label-color);
   --editor-page-var-tag-background-color: var(--ui-accent-muted-soft-color);
   --editor-line-meta-color: var(--meta-subtle-color);

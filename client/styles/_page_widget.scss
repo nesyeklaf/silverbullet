@@ -38,7 +38,7 @@
 .sb-page-widget-title {
   white-space: nowrap;
   font-family: var(--ui-font);
-  font-size: 0.85em;
+  font-size: var(--page-meta-size, 0.85em);
   font-weight: 650;
   color: var(--ui-label-color);
 }
@@ -165,7 +165,7 @@
   .sb-inline-view-header {
     box-sizing: border-box;
     font-family: var(--ui-font);
-    font-size: 16px;
+    font-size: var(--page-meta-size, 16px);
     background: var(--modal-background-color);
     color: var(--modal-color);
 
