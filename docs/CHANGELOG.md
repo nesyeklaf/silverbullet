@@ -7,6 +7,7 @@ _These changes are available from the [edge builds](https://github.com/silverbul
   * A theme is a `Library/` page tagged `meta/theme`: a few base colors give a complete theme, and it can suggest fonts. See [[Theming/Creating a Theme]].
   * New [[API/theme]] API to list themes and pick one for this device.
   * **Breaking for theme authors**, see [[Theming/Upgrading Existing Styles]].
+  * Typography: what stands in a page (frontmatter, attributes, query tables, page-docked views, the page name) now speaks in the page's font, at two sizes derived from the editor size. The interface uses one type scale (`--ui-text-*`) and IBM Plex Sans, the sans sibling of iA Writer Mono; Inter stays available as an editor font.
 * [[^Library/Std/APIs/Markup Bar|Markup bar]]: the keyboard bar’s concepts are now also available on desktop, in two places:
   * A **formatting bubble** over selected text.
   * A **⋮ handle** beside the line under the mouse.

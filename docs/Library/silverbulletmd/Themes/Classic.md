@@ -13,7 +13,7 @@ share.hash: 6d690726
 
 Pick either in Configuration → Appearance → Theme, or with ${widgets.commandButton("Theme: Select")}. ${widgets.commandButton("Theme: Toggle Light/Dark")} switches between the two.
 
-The layout is the original one too: while a Classic theme is active, the styles below put back the original element styling (square controls, filled hashtags, plain tables, the sidebar's accent bar and so on) in place of SilverBullet's newer look. Both themes suggest iA Writer Mono for your pages, which comes with SilverBullet; the suggestion only applies while you haven't picked an editor font yourself. The interface uses Inter, as it does everywhere in SilverBullet.
+The layout is the original one too: while a Classic theme is active, the styles below put back the original element styling (square controls, filled hashtags, plain tables, the sidebar's accent bar and so on) in place of SilverBullet's newer look. Both themes suggest iA Writer Mono for your pages, which comes with SilverBullet; the suggestion only applies while you haven't picked an editor font yourself. The interface uses IBM Plex Sans, as it does everywhere in SilverBullet.
 
 ```space-style
 :where(html[data-sb-theme^="Library/silverbulletmd/Themes/Classic/"]) {

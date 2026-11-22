@@ -34,7 +34,7 @@
     gap: 2px;
     padding: 4px 10px;
     border-bottom: 1px solid var(--ui-surface-border-color);
-    font-size: 12px;
+    font-size: var(--ui-text-sm);
 
     .sb-progress {
       height: 3px;
@@ -77,7 +77,7 @@
       align-items: center;
       padding-top: 1px;
       padding-bottom: 1px;
-      font-size: 12px;
+      font-size: var(--ui-text-sm);
     }
   }
 
@@ -123,7 +123,7 @@
     overflow: hidden;
     color: inherit;
     font-family: var(--editor-monospace-font, monospace);
-    font-size: 11px;
+    font-size: var(--ui-text-xs);
     white-space: nowrap;
     text-overflow: ellipsis;
     text-decoration: none;
@@ -141,7 +141,7 @@
     gap: 0 12px;
     min-width: 0;
     color: var(--ui-surface-subtle-color);
-    font-size: 11px;
+    font-size: var(--ui-text-xs);
     overflow-wrap: anywhere;
   }
 
@@ -261,7 +261,7 @@
   .sb-wb-lib-card-desc {
     margin-top: 4px;
     color: var(--ui-surface-subtle-color);
-    font-size: 12px;
+    font-size: var(--ui-text-sm);
     line-height: 1.45;
     overflow-wrap: anywhere;
 

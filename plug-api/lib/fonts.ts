@@ -80,7 +80,7 @@ export function fontSelectionFor(
 export const DEFAULT_FONT = "ia-writer-mono";
 
 /** The interface font when the theme suggests none. */
-export const UI_FONT = "inter";
+export const UI_FONT = "ibm-plex-sans";
 
 /**
  * Whether a font value can go into a `<style>` element: names, spaces,
@@ -441,6 +441,12 @@ export const BUILTIN_FONTS: Record<string, FontEntry> = {
     name: "iA Writer Mono",
     family: "'iA-Mono', Menlo, monospace",
     kind: "mono",
+    license: "OFL-1.1",
+  },
+  "ibm-plex-sans": {
+    name: "IBM Plex Sans",
+    family: "'IBM Plex Sans', system-ui, sans-serif",
+    kind: "sans",
     license: "OFL-1.1",
   },
   inter: {

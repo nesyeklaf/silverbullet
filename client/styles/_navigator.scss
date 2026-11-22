@@ -22,7 +22,7 @@
   // would read as a stray one down the side of the dock.
   overflow: hidden;
   font-family: var(--ui-font);
-  font-size: 16px;
+  font-size: var(--ui-text-base);
   background: var(--modal-background-color);
   color: var(--modal-color);
 }
@@ -109,7 +109,7 @@
   padding: 0 20px 0 8px;
   border: 0;
   border-radius: var(--ui-radius-sm);
-  font-size: 12px;
+  font-size: var(--ui-text-sm);
   color: var(--subtle-color);
   background-color: color-mix(in srgb,
       var(--ui-surface-section-background-color) 60%,
@@ -272,7 +272,7 @@
   height: var(--sb-nav-row-height);
   --sb-nav-band: transparent;
   border-radius: var(--ui-radius-md);
-  font-size: 14.5px;
+  font-size: var(--ui-text-lg);
 }
 
 .sb-nav-row:has(> .sb-nav-text) {
@@ -420,7 +420,7 @@
   border: 1px dashed var(--ui-surface-border-color);
   border-radius: var(--ui-radius-md);
   color: var(--subtle-color);
-  font-size: 13px;
+  font-size: var(--ui-text-md);
   line-height: 1.45;
   text-align: center;
 
@@ -542,7 +542,7 @@
     align-items: center;
     gap: 8px 2px;
     padding: 10px 10px 6px;
-    font-size: 14px;
+    font-size: var(--ui-text-lg);
 
     > :not(.sb-nav-header-row):not(.sb-nav-segment-row) {
       grid-column: 1 / -1;
@@ -555,7 +555,7 @@
 
   .sb-nav-title {
     grid-area: segments;
-    font-size: 13px;
+    font-size: var(--ui-text-md);
     font-weight: 650;
   }
 
@@ -631,7 +631,7 @@
   }
 
   .sb-nav-header-row {
-    font-size: 17px;
+    font-size: var(--ui-text-xl);
     padding: 14px 14px 12px 18px;
     gap: 10px;
     align-items: center;
@@ -647,12 +647,12 @@
   }
 
   .sb-nav-title {
-    font-size: 15px;
+    font-size: var(--ui-text-lg);
     padding: 0;
   }
 
   .sb-nav-input {
-    font-size: 17px;
+    font-size: var(--ui-text-xl);
     font-weight: 400;
     color: var(--root-color);
     padding: 0;
@@ -672,7 +672,7 @@
   .sb-segments {
     flex-wrap: nowrap;
     padding: 2px;
-    font-size: 13px;
+    font-size: var(--ui-text-md);
     background: color-mix(in srgb, var(--root-color) 5%, transparent);
   }
 
@@ -704,7 +704,7 @@
     background-color: transparent;
     border: 0;
     box-shadow: none;
-    font-size: 13px;
+    font-size: var(--ui-text-md);
     color: var(--subtle-color);
     padding: 3px 22px 3px 8px;
     min-width: 0;
@@ -718,7 +718,7 @@
   }
 
   .sb-nav-help {
-    font-size: 12px;
+    font-size: var(--ui-text-sm);
     padding: 8px 18px 0;
   }
 
@@ -728,7 +728,7 @@
 
   .sb-nav-row {
     padding: 7px 12px;
-    font-size: 14px;
+    font-size: var(--ui-text-lg);
     min-height: 0;
   }
 
@@ -742,7 +742,7 @@
   }
 
   .sb-nav-description {
-    font-size: 12.5px;
+    font-size: var(--ui-text-sm);
     line-height: 1.45;
     color: var(--subtle-color);
   }

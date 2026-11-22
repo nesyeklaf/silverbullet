@@ -21,6 +21,7 @@ test("Std registers the built-in fonts, with no font setting defaulted, so a the
   const config = await stdConfig();
   expect(Object.keys(config.get("fonts.available", {})).sort()).toEqual([
     "ia-writer-mono",
+    "ibm-plex-sans",
     "inter",
     "lora",
     "system-mono",

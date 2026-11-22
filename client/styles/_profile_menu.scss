@@ -1,7 +1,7 @@
 // Rendered via portal into document.body, same reason as .sb-notifications above.
 .sb-anchored-menu {
   font-family: var(--ui-font);
-  font-size: 14px;
+  font-size: var(--ui-text-lg);
   line-height: 1.45;
   position: fixed;
   box-sizing: border-box;
@@ -31,7 +31,7 @@
   }
 
   .sb-anchored-menu-subtitle {
-    font-size: 12px;
+    font-size: var(--ui-text-sm);
     margin-top: 3px;
     color: var(--subtle-color);
   }
@@ -47,7 +47,7 @@
     background: transparent;
     color: inherit;
     font-family: var(--ui-font);
-    font-size: 13px;
+    font-size: var(--ui-text-md);
     line-height: 1.6;
     cursor: pointer;
 
@@ -97,7 +97,7 @@
   color: var(--subtle-color);
 }
 @media (max-width: 600px) {
-  .sb-anchored-menu button { min-height: 44px; font-size: 16px; }
+  .sb-anchored-menu button { min-height: 44px; font-size: var(--ui-text-base); }
 }
 
 .sb-actions button:has(.sb-profile-avatar) {

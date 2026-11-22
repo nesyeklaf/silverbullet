@@ -62,11 +62,11 @@ $comment-border: 1px;
     // interface font is the page's own font. Popovers, pickers and docks sit
     // outside .cm-content and keep the interface font.
     --ui-font: var(--editor-font);
-    // Two small roles, relative to the body so they follow the reader's size:
-    // meta for sources, frame titles and attribute values; label for keys,
-    // task states and chips.
-    --page-meta-size: 0.85em;
-    --page-label-size: 0.78em;
+    // Two small roles, derived from the body size so they follow the reader's
+    // setting and never compound when nested: meta for sources, frame titles,
+    // table cells and view bodies; label for keys, headers, tags and pills.
+    --page-meta-size: calc(var(--editor-font-size) * 0.85);
+    --page-label-size: calc(var(--editor-font-size) * 0.78);
     --ui-font-size-sm: var(--page-meta-size);
   }
 
@@ -312,7 +312,7 @@ $comment-border: 1px;
       border-bottom: none;
       padding: 8px 8px 2px;
       font-family: var(--ui-font);
-      font-size: 12px;
+      font-size: var(--ui-text-sm);
       font-weight: 600;
       color: var(--ui-label-color);
     }
@@ -439,12 +439,12 @@ $comment-border: 1px;
     border-radius: var(--editor-hashtag-border-radius);
     padding: 0 3px;
     margin: 0 1px 0 0;
-    font-size: 0.9em;
+    font-size: var(--page-meta-size);
   }
 
   // Hashtags as soft accent pills
   .sb-hashtag[data-tag-name] {
-    font-size: 0.8em;
+    font-size: var(--page-label-size);
     font-weight: 500;
     padding: 2px 10px;
     margin: 0 2px;
@@ -458,7 +458,7 @@ $comment-border: 1px;
     border-radius: 6px;
     padding: 0 3px;
     margin: 0 1px 0 0;
-    font-size: 0.9em;
+    font-size: var(--page-meta-size);
     text-decoration: none;
   }
 

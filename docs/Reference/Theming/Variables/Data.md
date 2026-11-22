@@ -375,10 +375,10 @@ description: "Maximum width of the page text."
 name: "--ui-font"
 group: Fonts
 level: base
-light: "Inter, system-ui, sans-serif"
+light: "'IBM Plex Sans', system-ui, sans-serif"
 since: "0.0.22"
 stability: stable
-description: "Interface font: always Lora, see [[Reference/Theming/Fonts]]."
+description: "Interface font, the theme's choice (IBM Plex Sans by default). Inside the page text it is the editor font, so what stands in a page speaks in the page's voice. See [[Reference/Theming/Fonts]]."
 ---
 name: "--editor-font"
 group: Fonts

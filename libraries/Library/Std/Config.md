@@ -194,6 +194,9 @@ config.define("fonts", {
 config.set("fonts.available.ia-writer-mono", {
   name = "iA Writer Mono", family = "'iA-Mono', Menlo, monospace", kind = "mono", license = "OFL-1.1",
 })
+config.set("fonts.available.ibm-plex-sans", {
+  name = "IBM Plex Sans", family = "'IBM Plex Sans', system-ui, sans-serif", kind = "sans", license = "OFL-1.1",
+})
 config.set("fonts.available.inter", {
   name = "Inter", family = "Inter, system-ui, sans-serif", kind = "sans", license = "OFL-1.1",
 })

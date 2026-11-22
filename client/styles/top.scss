@@ -175,7 +175,7 @@
   // Shown next to the ring during the first boot only, while the space is
   // still being synced and indexed
   .progress-label {
-    font-size: 12px;
+    font-size: var(--ui-text-sm);
     color: var(--subtle-color);
     white-space: nowrap;
   }

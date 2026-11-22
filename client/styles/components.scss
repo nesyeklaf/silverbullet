@@ -109,7 +109,7 @@ textarea,
 .sb-input,
 .sb-select {
   padding: 0.3em 0.6em;
-  font-size: 13px;
+  font-size: var(--ui-text-md);
   background-color: var(--text-field-background-color);
   color: var(--root-color);
   border: 1px solid var(--ui-surface-border-color);
@@ -222,7 +222,7 @@ textarea,
   border-radius: var(--ui-radius-pill);
   background: none;
   color: var(--subtle-color);
-  font-size: 13px;
+  font-size: var(--ui-text-md);
   font-weight: 500;
   line-height: 18px;
   white-space: nowrap;
@@ -270,7 +270,7 @@ textarea,
   display: inline-flex;
   align-items: center;
   padding: 2px 8px;
-  font-size: 11px;
+  font-size: var(--ui-text-xs);
   font-weight: 500;
   background-color: var(--badge-background-color);
   color: var(--badge-color);
@@ -300,7 +300,7 @@ textarea,
 
 :is(.sb-button, .sb-button-primary, .sb-button-danger) .sb-kbd {
   margin-left: 6px;
-  font-size: 11px;
+  font-size: var(--ui-text-xs);
 }
 
 .sb-url-input {
@@ -372,7 +372,7 @@ textarea,
   background-color: transparent;
   color: var(--subtle-color);
   font-family: inherit;
-  font-size: 12px;
+  font-size: var(--ui-text-sm);
   line-height: 16px;
   white-space: nowrap;
   cursor: pointer;
@@ -406,7 +406,7 @@ textarea,
   padding: 0 5px;
   border-radius: var(--ui-radius-md);
   background-color: var(--ui-surface-hover-background-color);
-  font-size: 11px;
+  font-size: var(--ui-text-xs);
   line-height: 14px;
 }
 
@@ -656,7 +656,7 @@ body.sb-resizing-y {
   flex: none;
   padding: 2px 6px;
   line-height: 1;
-  font-size: 10px;
+  font-size: var(--ui-text-xs);
   border-radius: 2px;
   background-color: var(--badge-background-color);
   color: var(--badge-color);
@@ -668,7 +668,7 @@ body.sb-resizing-y {
   align-self: center;
   padding: 2px 10px;
   border-radius: var(--ui-radius-pill);
-  font-size: 12px;
+  font-size: var(--ui-text-sm);
   line-height: 1.4;
   font-weight: 500;
 }
@@ -699,7 +699,7 @@ body.sb-resizing-y {
 
 a.sb-tab { text-decoration: none; color: var(--subtle-color); }
 a.sb-tab.sb-active { color: var(--ui-accent-text-color); }
-.sb-section-link { font-size: 13px; }
+.sb-section-link { font-size: var(--ui-text-md); }
 .sb-section-nav { min-width: 0; }
 .sb-section-links { display: grid; gap: 0.25rem; }
 .sb-section-link {
@@ -716,7 +716,7 @@ a.sb-tab.sb-active { color: var(--ui-accent-text-color); }
 }
 .sb-section-nav-mobile { display: none; }
 .sb-field { display: grid; gap: 0.6rem; margin-block: 1.4rem; min-width: 0; }
-.sb-field > label, .sb-checkbox-field-line > label { margin: 0; font-size: 13px; font-weight: 400; }
+.sb-field > label, .sb-checkbox-field-line > label { margin: 0; font-size: var(--ui-text-md); font-weight: 400; }
 .sb-field > .sb-input, .sb-field > .sb-select { width: 100%; }
 .sb-field-error { color: var(--alert-error-color); }
 .sb-checkbox-field { margin-block: 0.75rem; }
@@ -733,9 +733,9 @@ a.sb-tab.sb-active { color: var(--ui-accent-text-color); }
 @media (max-width: 640px) {
   .sb-section-nav.sb-section-nav-responsive > .sb-section-nav-desktop { display: none; }
   .sb-section-nav-responsive > .sb-section-nav-mobile { display: grid; gap: 0.5rem; }
-  .sb-section-nav-mobile .sb-select { appearance: none; min-height: 44px; height: 44px; font-size: 16px; padding: 0.5rem 0.75rem; }
+  .sb-section-nav-mobile .sb-select { appearance: none; min-height: 44px; height: 44px; font-size: var(--ui-text-base); padding: 0.5rem 0.75rem; }
   .sb-button-icon { min-width: 44px; min-height: 44px; }
-  .sb-field .sb-input { min-height: 44px; font-size: 16px; }
+  .sb-field .sb-input { min-height: 44px; font-size: var(--ui-text-base); }
 }
 
 .sb-section-select { position: relative; }
@@ -792,7 +792,7 @@ a.sb-tab.sb-active { color: var(--ui-accent-text-color); }
 .sb-search-model-languages,
 .sb-search-model-size,
 .sb-search-model-license,
-.sb-search-model-notice { color: var(--subtle-color); font-size: 13px; }
+.sb-search-model-notice { color: var(--subtle-color); font-size: var(--ui-text-md); }
 .sb-search-model-license a { color: var(--link-color); }
 .sb-search-model-download { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 0.4rem; }
 .sb-search-model-download > .sb-progress { flex: 1 1 100%; }
@@ -810,7 +810,7 @@ a.sb-tab.sb-active { color: var(--ui-accent-text-color); }
 .sb-search-index-empty { margin: 0; color: var(--subtle-color); }
 /* One line per row; at phone width the table scrolls inside its box. */
 .sb-search-spaces-scroll { max-width: 100%; overflow-x: auto; }
-.sb-search-spaces { width: 100%; border-collapse: collapse; font-size: 13px; }
+.sb-search-spaces { width: 100%; border-collapse: collapse; font-size: var(--ui-text-md); }
 .sb-search-spaces th { text-align: left; font-weight: 600; color: var(--subtle-color); }
 .sb-search-spaces th,
 .sb-search-spaces td { padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--ui-surface-border-color); vertical-align: middle; white-space: nowrap; }
@@ -822,7 +822,7 @@ a.sb-tab.sb-active { color: var(--ui-accent-text-color); }
 .sb-search-spaces-status[data-phase="failed"] { color: var(--alert-error-color); }
 .sb-search-spaces-count { color: var(--subtle-color); font-variant-numeric: tabular-nums; }
 .sb-search-spaces-muted { color: var(--subtle-color); }
-.sb-search-spaces-footnote { margin-block: 0.4rem 0; color: var(--subtle-color); font-size: 13px; }
+.sb-search-spaces-footnote { margin-block: 0.4rem 0; color: var(--subtle-color); font-size: var(--ui-text-md); }
 /* A row's ⋯ menu (plug-api/ui/row_menu.tsx), appended to <body> and fixed, so
    no scrolling box clips it; it clears the modal panel layer (.sb-modal-backdrop, 100). */
 .sb-row-menu-trigger { display: inline-flex; align-items: center; line-height: 1; padding: 0.3em 0.45em; }
@@ -836,7 +836,7 @@ a.sb-tab.sb-active { color: var(--ui-accent-text-color); }
   text-align: left;
   white-space: nowrap;
   font-family: var(--ui-font);
-  font-size: 13px;
+  font-size: var(--ui-text-md);
   background: var(--modal-background-color);
   color: var(--modal-color);
   border: 1px solid var(--modal-border-color);
@@ -871,7 +871,7 @@ a.sb-tab.sb-active { color: var(--ui-accent-text-color); }
     svg { width: 100%; height: 100%; display: block; }
   }
 }
-.sb-search-summary { margin-block: 0.5rem; font-size: 13px; }
+.sb-search-summary { margin-block: 0.5rem; font-size: var(--ui-text-md); }
 
 .sb-copy-field {
   display: flex;

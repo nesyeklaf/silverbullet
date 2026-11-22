@@ -62,7 +62,7 @@
 
   --editor-width: 800px;
 
-  --ui-font: Inter, system-ui, sans-serif;
+  --ui-font: "IBM Plex Sans", system-ui, sans-serif;
   --editor-font: "iA-Mono", "Menlo";
   --editor-monospace-font: "iA-Mono", "Menlo", monospace;
   --editor-font-size: 18px;
@@ -104,8 +104,18 @@
   --ui-shadow-popover: 0 12px 32px -8px var(--modal-shadow-color);
   // The keyboard focus outline of controls (with a 1px outline-offset).
   --ui-focus-ring: 3px solid var(--tone-accent-soft);
+  // The interface type scale. Chrome text (top bar, docks, pickers, menus,
+  // dialogs, settings, workbench) takes one of these, never a raw size; page
+  // content uses --editor-font-size and the page roles in editor.scss.
+  --ui-text-xs: 11px; // badges, counts, keys
+  --ui-text-sm: 12px; // secondary lines, hints, section labels
+  --ui-text-md: 13px; // the default: rows, buttons, fields, menus
+  --ui-text-lg: 15px; // picker input, dock titles, emphasised rows
+  --ui-text-base: 16px; // root size; inputs on touch (iOS zooms below 16px)
+  --ui-text-xl: 17px; // dialog and section headings
+  --ui-text-2xl: 24px; // page headings in settings, big figures
   // Interface text in controls: buttons, menus, notifications.
-  --ui-font-size-sm: 13.5px;
+  --ui-font-size-sm: var(--ui-text-md);
 
   // Top bar
   --top-color: var(--root-color);

@@ -40,7 +40,7 @@
   background: transparent;
   cursor: pointer;
   font-family: var(--ui-font);
-  font-size: 14px;
+  font-size: var(--ui-text-lg);
   color: var(--modal-color);
 }
 
@@ -97,7 +97,7 @@
 // The ⋯ widget menu reuses the dock menu; these are its extra rows.
 .sb-widget-menu-info {
   font-family: var(--ui-font);
-  font-size: 12.5px;
+  font-size: var(--ui-text-sm);
   color: var(--subtle-color);
   padding: 6px 8px 8px;
   margin-bottom: 4px;

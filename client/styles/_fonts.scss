@@ -27,7 +27,7 @@
 }
 
 
-// Inter, the bundled sans and the interface font, as one variable font per style so
+// Inter, a bundled sans to choose for the editor, as one variable font per style so
 // every weight the design uses (400-700) is real, not synthesized. SIL OFL
 // 1.1, no Reserved Font Name; see fonts/LICENSE-Inter.txt. Faces load only
 // when text uses them.
@@ -42,6 +42,26 @@
   font-family: "Inter";
   src: url("InterVariable-Italic.woff2") format("woff2");
   font-weight: 100 900;
+  font-style: italic;
+}
+
+// IBM Plex Sans, the interface font: the sans sibling of iA Writer Mono
+// (built on IBM Plex Mono), so chrome and code share one design. Google
+// Fonts' variable build, unmodified (wdth 85-100, wght 100-700). SIL OFL 1.1
+// with Reserved Font Name "Plex"; see fonts/LICENSE-IBMPlexSans.txt.
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("IBMPlexSans-Variable.woff2") format("woff2");
+  font-weight: 100 700;
+  font-stretch: 85% 100%;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("IBMPlexSans-Italic-Variable.woff2") format("woff2");
+  font-weight: 100 700;
+  font-stretch: 85% 100%;
   font-style: italic;
 }
 

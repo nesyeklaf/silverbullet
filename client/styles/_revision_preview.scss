@@ -49,7 +49,7 @@
   padding: 12px;
   // Markdown source and diffs: columns and markup only line up in monospace
   font-family: var(--editor-monospace-font, monospace);
-  font-size: 13px;
+  font-size: var(--ui-text-md);
   line-height: 1.55;
   white-space: pre-wrap;
   word-break: break-word;
@@ -115,7 +115,7 @@
     padding: 1px 6px;
     border-radius: var(--ui-radius-sm);
     font-family: var(--editor-monospace-font, monospace);
-    font-size: 12px;
+    font-size: var(--ui-text-sm);
   }
 
   .sb-revision-diff-add {

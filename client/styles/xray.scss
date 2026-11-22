@@ -38,7 +38,7 @@
 }
 
 .sb-xray-tooltip-tag {
-  font-size: 11px;
+  font-size: var(--ui-text-xs);
   font-weight: 600;
   margin: 0 0 2px;
   opacity: 0.7;
@@ -48,6 +48,6 @@
   margin: 0;
   font-family: var(--editor-monospace-font, monospace);
   white-space: pre-wrap;
-  font-size: 11px;
+  font-size: var(--ui-text-xs);
   line-height: 1.3;
 }

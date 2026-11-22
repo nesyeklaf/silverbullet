@@ -282,10 +282,10 @@ view.define {
 ```
 
 ```space-style
-/* A mention's source: interface type, muted folder, full-weight page name */
+/* A mention's source: the page's label role, muted folder, full-weight page name */
 .sb-mention-source {
   font-family: var(--ui-font);
-  font-size: 0.8em;
+  font-size: var(--page-label-size, 0.8em);
   font-weight: 500;
   color: var(--subtle-color);
 }

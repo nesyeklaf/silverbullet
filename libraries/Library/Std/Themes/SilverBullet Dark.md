@@ -4,7 +4,7 @@ tags: meta/theme
 displayName: SilverBullet Dark
 scheme: dark
 fonts:
-  ui: inter
+  ui: ibm-plex-sans
   editor: lora
 counterpart: "[[Library/Std/Themes/SilverBullet Light]]"
 ---

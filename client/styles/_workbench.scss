@@ -78,7 +78,7 @@
   flex: 1 1 auto;
   flex-direction: column;
   min-height: 0;
-  font-size: 13px;
+  font-size: var(--ui-text-md);
 
   // A narrow panel wraps the toolbar's controls onto more lines; each
   // control only wraps its own items when it's wider than a whole line
@@ -126,7 +126,7 @@
     background: transparent;
     color: inherit;
     font-family: var(--ui-font);
-    font-size: 14px;
+    font-size: var(--ui-text-lg);
   }
 
   .sb-workbench-body {
@@ -189,7 +189,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-size: 12px;
+    font-size: var(--ui-text-sm);
   }
 
   .sb-wb-excerpt {
@@ -222,7 +222,7 @@
     background-color: var(--ui-surface-section-background-color);
     color: var(--subtle-color);
     font-family: var(--ui-font);
-    font-size: 11px;
+    font-size: var(--ui-text-xs);
   }
 
   .sb-wb-link {
@@ -254,7 +254,7 @@
 
   .sb-wb-rendered .sb-nav-content {
     padding: 2px 0;
-    font-size: 14px;
+    font-size: var(--ui-text-lg);
 
     > :last-child,
     > .wrapper > :last-child {
@@ -398,7 +398,7 @@
       padding-top: 4px;
       color: var(--subtle-color);
       font-family: var(--editor-monospace-font, monospace);
-      font-size: 13px;
+      font-size: var(--ui-text-md);
       line-height: 1.4;
     }
 
@@ -409,7 +409,7 @@
     }
 
     .cm-editor {
-      font-size: 13px;
+      font-size: var(--ui-text-md);
 
       &.cm-focused {
         outline: none;
@@ -440,7 +440,7 @@
   .sb-wb-block-head {
     color: var(--subtle-color);
     font-family: var(--ui-font);
-    font-size: 11px;
+    font-size: var(--ui-text-xs);
     cursor: default;
 
     &:hover {
@@ -518,7 +518,7 @@
     padding: 4px 10px;
     border-top: 1px solid var(--ui-surface-border-color);
     color: var(--subtle-color);
-    font-size: 12px;
+    font-size: var(--ui-text-sm);
   }
 
   .sb-workbench-warning {
@@ -575,7 +575,7 @@
     margin-left: auto;
     overflow: hidden;
     color: var(--subtle-color);
-    font-size: 12px;
+    font-size: var(--ui-text-sm);
     font-weight: normal;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -636,7 +636,7 @@
   .sb-wbm-source {
     color: var(--subtle-color);
     font-family: var(--editor-monospace-font, monospace);
-    font-size: 11px;
+    font-size: var(--ui-text-xs);
   }
 
   .sb-wbm-more {

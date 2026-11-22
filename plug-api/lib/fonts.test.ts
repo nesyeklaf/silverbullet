@@ -230,7 +230,7 @@ test("a fallback font's own files load when the slot falls back to it", () => {
 test("a theme's suggestion fills a slot the space leaves unset", () => {
   const theme = { ui: "system-sans", editor: "inter", code: "system-mono" };
   expect(fontSelectionFor({}, theme)).toMatchObject({
-    ui: ["system-sans", "inter"],
+    ui: ["system-sans", UI_FONT],
     editor: ["inter"],
     code: ["system-mono"],
   });
