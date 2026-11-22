@@ -9,13 +9,21 @@ import { decoratorStateField, isCursorInRange } from "../util.ts";
 
 const bulletListMarkerRE = /^[-+*]/;
 
-export function listBulletPlugin() {
+export type ListBulletOptions = {
+  /**
+   * Draw no bullet before a task (`* [ ] …`): the checkbox takes the
+   * bullet's place. The marker comes back while the cursor is on it.
+   */
+  hideTaskBullets?: boolean;
+};
+
+export function listBulletPlugin(options: ListBulletOptions = {}) {
   return decoratorStateField((state: EditorState, _tr, range) => {
     const widgets: any[] = [];
     syntaxTree(state).iterate({
       from: range?.from,
       to: range?.to,
-      enter: ({ type, from, to }) => {
+      enter: ({ type, from, to, node }) => {
         if (type.name === "ListMark") {
           if (isCursorInRange(state, [from, to])) {
             widgets.push(
@@ -25,7 +33,15 @@ export function listBulletPlugin() {
             );
           } else {
             const listMark = state.sliceDoc(from, to);
-            if (bulletListMarkerRE.test(listMark)) {
+            if (
+              options.hideTaskBullets &&
+              isHiddenTaskBullet(listMark, node.parent?.getChild("Task"))
+            ) {
+              // The marker and its space go; list_indent.ts gives their
+              // slot no columns, so the checkbox sits where the bullet was.
+              const end = state.sliceDoc(to, to + 1) === " " ? to + 1 : to;
+              widgets.push(Decoration.replace({}).range(from, end));
+            } else if (bulletListMarkerRE.test(listMark)) {
               const dec = Decoration.replace({
                 widget: new ListBulletWidget(),
               });
@@ -43,6 +59,17 @@ export function listBulletPlugin() {
     });
     return Decoration.set(widgets, true);
   }, {});
+}
+
+/**
+ * Whether a list marker is a bullet (`*`, `-`, `+`, not a number) in front
+ * of a task, the one `hideTaskBullets` leaves out.
+ */
+export function isHiddenTaskBullet(
+  listMark: string,
+  task: unknown | null | undefined,
+): boolean {
+  return !!task && bulletListMarkerRE.test(listMark);
 }
 
 /**

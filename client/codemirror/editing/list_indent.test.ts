@@ -311,3 +311,59 @@ test("a numbered line that can't start a list under a paragraph stays text", () 
   // Only `1.` may interrupt a paragraph; `2. ` stays text when typed on.
   expect(rowLayout("Grab bag:\n2. ", 2)).toEqual([]);
 });
+
+// hideTaskBullets: the bullet before a task and its space take no columns,
+// so the checkbox sits where the bullet was and the text follows it.
+function hiddenBulletLayout(doc: string): {
+  indents: string[];
+  slots: number[];
+} {
+  const field = listIndentPlugin({ hideTaskBullets: true });
+  const state = EditorState.create({
+    doc,
+    extensions: [buildExtendedMarkdownLanguage(), field],
+  });
+  const indents: string[] = [];
+  const slots: number[] = [];
+  state.field(field).between(0, doc.length, (_from, _to, deco) => {
+    const style = (deco.spec as any).attributes?.style as string | undefined;
+    if (style?.startsWith("--sb-list-indent")) indents.push(style);
+    const match = style?.match(/^--sb-slot-columns:(\d+)/);
+    if (match) slots.push(Number(match[1]));
+  });
+  return { indents, slots };
+}
+
+test("hideTaskBullets: a bullet task's checkbox takes the bullet's columns", () => {
+  // `* ` gets an empty slot, `[ ] ` keeps its four columns.
+  expect(hiddenBulletLayout("* [ ] task\n")).toEqual({
+    indents: [indent(4)],
+    slots: [0, 4],
+  });
+  expect(hiddenBulletLayout("- [x] done\n").indents).toEqual([indent(4)]);
+});
+
+test("hideTaskBullets: a custom state keeps its caret column", () => {
+  expect(hiddenBulletLayout("* [TODO] task\n").indents).toEqual([indent(8)]);
+});
+
+test("hideTaskBullets: plain bullets and numbered tasks keep their markers", () => {
+  expect(hiddenBulletLayout("* item\n")).toEqual({
+    indents: [indent(2)],
+    slots: [2],
+  });
+  expect(hiddenBulletLayout("1. [ ] task\n")).toEqual({
+    indents: [indent(7)],
+    slots: [3, 4],
+  });
+});
+
+test("hideTaskBullets: a nested item under a task lines up with its text", () => {
+  // The task's text starts at column 4; the child's bullet sits at 2, its
+  // text at 4, under the task's.
+  expect(hiddenBulletLayout("* [ ] task\n  * child\n").indents).toEqual([
+    indent(4),
+    indent(4),
+    indent(4),
+  ]);
+});

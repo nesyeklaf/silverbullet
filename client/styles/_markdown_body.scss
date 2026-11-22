@@ -28,6 +28,20 @@
     vertical-align: top;
   }
 
+  // Setting hideTaskBullets (data-task-bullets on <html>, set by the editor):
+  // a task item drops its bullet and its checkbox moves into the bullet's
+  // column, as in the editor.
+  :root[data-task-bullets="hidden"] & {
+    ul li:has(> .sb-task)::before {
+      content: none;
+    }
+
+    ul li > .sb-task {
+      margin-left: -1em;
+      width: calc(100% + 1em);
+    }
+  }
+
   a.wiki-link {
     border-radius: 5px;
     padding: 0 5px;

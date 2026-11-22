@@ -226,6 +226,13 @@ config.define("shortWikiLinks", {
   ui = { category = "Editor", label = "Short wiki links", priority = 1 },
 })
 
+config.define("hideTaskBullets", {
+  description = "Draw no bullet before a task (* [ ] …): the checkbox takes the bullet's place. The Markdown is unchanged",
+  type = "boolean",
+  default = false,
+  ui = { category = "Editor", label = "Hide bullets before tasks", priority = 0 },
+})
+
 config.define("lint.inactiveBlocks", {
   description = "Warn about space-lua and space-style blocks on pages outside Library/, where they are not loaded",
   type = "boolean",

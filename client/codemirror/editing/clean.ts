@@ -29,6 +29,14 @@ import { luaDirectivePlugin } from "../widgets/lua_directive.ts";
 import { listIndentPlugin } from "./list_indent.ts";
 
 export function cleanModePlugins(client: Client) {
+  const hideTaskBullets =
+    client.config.get<boolean>("hideTaskBullets", false) === true;
+  // Rendered lists (query results, page widgets) follow the same setting
+  // through CSS; see _markdown_body.scss. (Tests run without a real DOM.)
+  globalThis.document?.documentElement?.setAttribute?.(
+    "data-task-bullets",
+    hideTaskBullets ? "hidden" : "shown",
+  );
   const pluginsNeededEvenWhenRenderingSyntax = [
     luaDirectivePlugin(client),
     cleanWikiLinkPlugin(client),
@@ -83,11 +91,11 @@ export function cleanModePlugins(client: Client) {
         return done;
       })(),
     }),
-    listBulletPlugin(),
+    listBulletPlugin({ hideTaskBullets }),
     // Lowest precedence makes its column slots the outermost mark elements,
     // so bullet, checkbox and highlight marks nest inside instead of
     // splitting a slot in two.
-    Prec.lowest(listIndentPlugin()),
+    Prec.lowest(listIndentPlugin({ hideTaskBullets })),
     htmlInlinePlugin(client),
     htmlBlockPlugin(client),
     tablePlugin(client),

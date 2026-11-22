@@ -420,6 +420,12 @@ $comment-border: 1px;
     line-height: 1;
   }
 
+  // With hideTaskBullets the checkbox stands in the bullet's place: its left
+  // edge on the bullets' edge, not centred in its columns.
+  .sb-task-lead-slot .sb-checkbox {
+    text-align: left;
+  }
+
   // The checkbox itself is drawn by the shared rule in components.scss; in
   // text it scales with the font. Rounded squares, round for tasks.
   input[type="checkbox"] {

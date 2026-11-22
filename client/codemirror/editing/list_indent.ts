@@ -2,6 +2,7 @@ import { syntaxTree } from "@codemirror/language";
 import type { EditorState, Range } from "@codemirror/state";
 import { Decoration, WidgetType } from "@codemirror/view";
 import type { SyntaxNode } from "@lezer/common";
+import { isHiddenTaskBullet } from "../syntax/list.ts";
 import { isCheckboxState } from "../syntax/task.ts";
 import { decoratorStateField } from "../util.ts";
 
@@ -21,18 +22,30 @@ function dropdownColumns(taskState: SyntaxNode, slice: Slice): number {
  *                     this line, subtracted so the two never double-count.
  * @param slice        The document's text, to tell a custom task state
  *                     (which adds its caret column) from a checkbox.
+ * @param hideTaskBullets A task's bullet and its space take no columns.
  */
 export function computeMarkerWidth(
   listItem: SyntaxNode,
   lineStart: number,
   quoteColumns: number,
   slice: Slice,
+  hideTaskBullets = false,
 ): number {
   const mark = listItem.firstChild;
   if (!mark || mark.name !== "ListMark") {
     return 0;
   }
   const leadingIndent = mark.from - lineStart - quoteColumns;
+  if (hideTaskBullets && hidesBullet(listItem, slice)) {
+    const taskState = listItem.getChild("Task")?.getChild("TaskState");
+    return taskState
+      ? leadingIndent +
+          taskState.to -
+          taskState.from +
+          1 +
+          dropdownColumns(taskState, slice)
+      : leadingIndent;
+  }
   const markLength = mark.to - mark.from;
   // TaskState wraps `[X]` / `[done]` / etc. (length varies by status string).
   // Width contribution = TaskState range length + 1 for the trailing space.
@@ -41,6 +54,16 @@ export function computeMarkerWidth(
     ? taskState.to - taskState.from + 1 + dropdownColumns(taskState, slice)
     : 0;
   return leadingIndent + markLength + 1 + taskExtra;
+}
+
+/** A bullet item holding a task: the bullet `hideTaskBullets` leaves out. */
+function hidesBullet(listItem: SyntaxNode, slice: Slice): boolean {
+  const mark = listItem.firstChild;
+  return (
+    !!mark &&
+    mark.name === "ListMark" &&
+    isHiddenTaskBullet(slice(mark.from, mark.to), listItem.getChild("Task"))
+  );
 }
 
 /**
@@ -190,7 +213,8 @@ function pendingMarkerSlots(
  * item's own number width, so everything inside an item is widened by the
  * difference (`pad`), accumulated over enclosing items.
  */
-export function listIndentPlugin() {
+export function listIndentPlugin(options: { hideTaskBullets?: boolean } = {}) {
+  const hideTaskBullets = options.hideTaskBullets ?? false;
   return decoratorStateField((state: EditorState, _tr, range) => {
     const doc = state.doc;
     const slice: Slice = (from, to) => doc.sliceString(from, to);
@@ -259,6 +283,7 @@ export function listIndentPlugin() {
           startLine.from,
           quote ? quote.to - quote.from : 0,
           slice,
+          hideTaskBullets,
         );
         if (width <= 0) return;
         const style =
@@ -294,6 +319,8 @@ export function listIndentPlugin() {
         const markEnd =
           slice(mark.to, mark.to + 1) === " " ? mark.to + 1 : mark.to;
         const taskState = node.getChild("Task")?.getChild("TaskState");
+        // list.ts replaces a hidden bullet and its space with nothing
+        const bulletHidden = hideTaskBullets && hidesBullet(node, slice);
         rows.set(startLine.from, () => {
           const slots = indentSlots(
             startLine.from,
@@ -304,7 +331,7 @@ export function listIndentPlugin() {
           );
           slots.push(
             columnSlot(
-              markEnd - mark.from + pad,
+              bulletHidden ? 0 : markEnd - mark.from + pad,
               ordered
                 ? "sb-list-mark-slot sb-ordered-mark-slot"
                 : "sb-list-mark-slot",
@@ -318,7 +345,9 @@ export function listIndentPlugin() {
             slots.push(
               columnSlot(
                 taskEnd - taskState.from + dropdownColumns(taskState, slice),
-                "sb-task-slot",
+                bulletHidden
+                  ? "sb-task-slot sb-task-lead-slot"
+                  : "sb-task-slot",
               ).range(taskState.from, taskEnd),
             );
           }
