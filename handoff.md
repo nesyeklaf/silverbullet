@@ -51,12 +51,24 @@
 - **Task-related changed files:** keine uncommitteten.
 - **Pre-existing or unrelated changes:** `.sbshot.mjs` ist untracked und bleibt es: ein Playwright-Screenshot-Helfer mit festen lokalen Pfaden.
 - **Background processes or external state:**
-  - systemd-User-Unit `silverbullet` (gewollt), Prozess `~/.local/bin/silverbullet` auf `127.0.0.1:3000`. `/` antwortet mit 307 auf `/.dashboard`.
-  - Daten in `~/.local/share/silverbullet`, darin der Space `spaces/notes` mit Revisions `managed`, Git-Branch `master`, kein Remote.
-  - `SB_UPDATE_CHECK=0` ist gesetzt.
-  - Das Prod-Binary trägt die Version `2.12.0-394-g2d3e4b2e`. Gebaut wurde es vor dem Amend zu `dfa91d1f`, der Code ist gleich, nur ein Test-Fix kam im Amend dazu.
-  - `hideTaskBullets` ist auf Prod aus, der Owner schaltet es selbst ein.
-  - Die Testinstanz 3077 ist gestoppt.
+  - **Prod läuft auf dem Server `AI`** (ssh-Host `AI`, Netcup, Debian 13, im Tailnet `v2202508294696377407`, IP 100.115.228.74).
+    - Adresse: https://v2202508294696377407.tailf80f26.ts.net:3300, nur im Tailnet erreichbar.
+    - Clone: `~/Projects/silverbullet` (origin = Fork).
+    - Binary: `~/.local/bin/silverbullet`.
+    - Daten: `~/.local/share/silverbullet`.
+    - systemd-User-Unit `silverbullet` auf `127.0.0.1:3300`, `SB_UPDATE_CHECK=0`, Linger ist an.
+    - `tailscale serve --https=3300` leitet auf `127.0.0.1:3300` weiter. Ändern geht nur mit sudo. Port 3000 ist dort von einem anderen Dienst belegt.
+    - In `server.json` steht `primaryUrl` = die Tailnet-URL.
+  - **Update auf AI:**
+    ```
+    cd ~/Projects/silverbullet && git pull && npm ci && npm run build
+    CARGO_NET_GIT_FETCH_WITH_CLI=true ~/.cargo/bin/cargo build --release -p silverbullet
+    install -m755 target/release/silverbullet ~/.local/bin/silverbullet
+    systemctl --user restart silverbullet
+    ```
+  - **Lokal auf omarchy:** Die Unit `silverbullet` ist gestoppt und deaktiviert. `~/.local/share/silverbullet` ist der alte Stand vom 2026-11-23 und bleibt als Sicherung liegen. Nicht wieder starten, sonst entstehen zwei Wahrheiten.
+  - Space „Notes“: Revisions `managed`, Git-Branch `master`, kein Remote.
+  - `hideTaskBullets` ist auf Prod aus.
 
 ## Work status
 
@@ -67,9 +79,11 @@
 - Die Einstellung `hideTaskBullets`, mit der die Checkbox an die Stelle des Punkts rückt. Evidence:
   - Commit `dfa91d1f`
   - In Dark Mode auf 3077 gemessen: linke Kante der Checkbox bei 341 px, gleich wie die Punkte; 0 von 6 Dashboard-Tasks zeigen einen Punkt.
-- Lokale Prod-Instanz. Evidence:
-  - `~/.cache/sb-release-build.log` endet mit `DEPLOY_OK`
-  - `systemctl --user is-active silverbullet` → active
+- Prod nach AI migriert, Evidence:
+  - sha256 aller 9 Daten-Dateien außer `.git` und `search` sind lokal und remote gleich.
+  - Das Space-Repo hat 6 Commits, `git fsck` ist sauber.
+  - `curl` über die Tailnet-URL: `/` → 307 `/.dashboard`, `/notes/` → 200.
+  - Die öffentliche IP antwortet auf :3300 nicht.
 
 ### In progress
 
